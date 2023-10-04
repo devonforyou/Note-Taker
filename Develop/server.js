@@ -1,11 +1,13 @@
 const express = require('express');
 const fs = require('fs');
-const path = require('fs');
+const path = require('path');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
-app.get('/', (req, res) => {
+const dbPath = path.join(__dirname, 'db', 'db.json');
+
+app.get('', (req, res) => {
     res.sendFile(path.join(__dirname, './public/index.html'))
 })
 
@@ -34,3 +36,19 @@ app.post('/api/notes', (req, res) => {
     });
 });
 
+app.delete('/apt/notes/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+    fs.readFile(dbPath, 'utf8', (err, data) => {
+        if (err) throw err;
+        const notes = JSON.parse(data);
+        const updatedNotes = notes.filter(note => note.id !== id);
+        fs.writeFile(dbPath, JSON.stringify(updatedNotes), (err) => {
+            if (err) throw err;
+            res.json({message: 'Note deleted.'});
+        });
+    });
+});
+
+app.listen(PORT, () =>
+  console.log(`App listening at http://localhost:${PORT}`)
+);
