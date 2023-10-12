@@ -6,7 +6,7 @@
 - We are deploying our application on Heroku which allows me to practice using Heroku over deploying on Github.
 - Github repo: https://github.com/devonforyou/Note-Taker
 - Heroku deployed application: https://note-taking-mod-11-bf300eefabd7.herokuapp.com/
-- ![Application image](<Develop/public/assets/images/Screenshot 2023-10-04 175349.png>)
+- ![Alt text](<public/assets/images/Screenshot 2023-10-04 175349.png>)
 
 ## Usage
 - This application can be used to write down notes and save them.
